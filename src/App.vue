@@ -1,35 +1,26 @@
 <template>
   <v-app>
-    <v-app-bar app color="grey darken-4" dark>
+    <v-app-bar app color="light" light collapse-on-scroll="true">
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
+          alt="Lunar Intel Logo"
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
+          src="./assets/cover.png"
+          width="400"
         />
       </div>
 
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        href="https://github.com/jonhetrick/lunar-intel"
         target="_blank"
         text
       >
         <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <v-icon>mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
 
