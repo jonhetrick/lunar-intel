@@ -11,7 +11,7 @@
                 required
               />
               <v-btn text @click="locatorButtonPressed">Current</v-btn>
-              <v-btn text>Search</v-btn>
+              <v-btn text @click="moonPhasePuller">Search for lunar</v-btn>
             </v-row>
           </v-container>
         </v-form>
@@ -29,9 +29,10 @@ export default {
   data() {
     return {
       address: "",
-      lat: "",
-      lng: "",
-      API_KEY: "AIzaSyCptaE0KIUwUGLJjqYNfPfWGnGN6sZN_EM"
+      lat: 0,
+      lng: 0,
+      API_KEY: "AIzaSyCptaE0KIUwUGLJjqYNfPfWGnGN6sZN_EM",
+      DS_Key: "9091f71b89d453129c7e893656767cfa"
     };
   },
   methods: {
@@ -43,8 +44,8 @@ export default {
             position.coords.longitude
           );
 
-          this.lat = position.coords.latitude;
-          this.lng = position.coords.longitude;
+          this.lat = position.coords.latitude.toFixed(4);
+          this.lng = position.coords.longitude.toFixed(4);
 
           console.log(this.lat);
           console.log(this.lng);
@@ -69,6 +70,26 @@ export default {
         } else {
           this.address = data.results[0].formatted_address;
           console.log(this.address);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    moonPhasePuller() {
+      try {
+        let { data } = axios.get(
+          "  https://api.darksky.net/forecast/" +
+            this.DS_Key +
+            "/" +
+            this.lat +
+            "," +
+            this.lng
+        );
+        if (data.error_message) {
+          console.log(data.error_message);
+        } else {
+          this.moonPhase = data.daily.moonPhase;
+          console.log(this.moonPhase);
         }
       } catch (error) {
         console.log(error.message);

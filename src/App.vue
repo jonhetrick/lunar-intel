@@ -25,19 +25,23 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <Carosel />
+      <Map />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+//import HelloWorld from "./components/HelloWorld";
+import Map from "./components/Map";
+import Carosel from "./components/Carosel";
 
 export default {
   name: "App",
 
   components: {
-    HelloWorld
+    Map,
+    Carosel
   },
 
   data: () => ({
