@@ -16,7 +16,10 @@ export default {
     return {
       items: [
         {
-          src: require("../assets/carosel/moon.png")
+          src: require("../assets/carosel/moon_phases.png")
+        },
+        {
+          src: require("../assets/carosel/moon_half.png")
         }
       ]
     };

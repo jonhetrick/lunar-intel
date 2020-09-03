@@ -14,6 +14,13 @@
               <v-btn text @click="moonPhasePuller">Search for lunar</v-btn>
             </v-row>
           </v-container>
+          <v-container>{{ DS_response }}</v-container>
+          <div id="app">
+            <h1>Info:</h1>
+            <div v-for="i in DS_response" :key="i" class="i">
+              {{ moonphase }}
+            </div>
+          </div>
         </v-form>
       </v-col>
     </v-row>
@@ -31,6 +38,9 @@ export default {
       address: "",
       lat: 0,
       lng: 0,
+      DS_response: null,
+      loading: true,
+      errored: false,
       API_KEY: "AIzaSyCptaE0KIUwUGLJjqYNfPfWGnGN6sZN_EM",
       DS_Key: "9091f71b89d453129c7e893656767cfa"
     };
@@ -57,7 +67,7 @@ export default {
     },
     async getStreetAddressFrom(lat, long) {
       try {
-        var { data } = await axios.get(
+        let { data } = await axios.get(
           "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
             lat +
             "," +
@@ -76,24 +86,16 @@ export default {
       }
     },
     moonPhasePuller() {
-      try {
-        let { data } = axios.get(
-          "  https://api.darksky.net/forecast/" +
-            this.DS_Key +
-            "/" +
-            this.lat +
-            "," +
-            this.lng
-        );
-        if (data.error_message) {
-          console.log(data.error_message);
-        } else {
-          this.moonPhase = data.daily.moonPhase;
-          console.log(this.moonPhase);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
+      axios
+        .get(
+          `https://api.darksky.net/forecast/${this.DS_Key}/${this.lat},${this.lng}`
+        )
+        .then(response => (this.DS_response = response.data.daily.data[0]))
+        .catch(error => {
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
     }
   }
 };

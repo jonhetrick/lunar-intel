@@ -1,15 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar app color="light" light collapse-on-scroll="true">
+    <v-app-bar app color="black" dark>
       <div class="d-flex align-center">
-        <v-img
-          alt="Lunar Intel Logo"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="./assets/cover.png"
-          width="400"
-        />
+        <h2 class="mr-2">Lunar Intel</h2>
       </div>
 
       <v-spacer></v-spacer>
@@ -24,24 +17,27 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
+    <v-main dark color="black">
       <Carosel />
-      <Map />
+      <HelloWorld />
     </v-main>
+    <Footer />
   </v-app>
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld";
-import Map from "./components/Map";
+import HelloWorld from "./components/HelloWorld";
+import Footer from "./components/Footer";
+// import Map from "./components/Map";
 import Carosel from "./components/Carosel";
 
 export default {
   name: "App",
 
   components: {
-    Map,
-    Carosel
+    HelloWorld,
+    Carosel,
+    Footer
   },
 
   data: () => ({
