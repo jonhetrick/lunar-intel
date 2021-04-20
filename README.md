@@ -1,4 +1,4 @@
-# lunar-intel
+# lunar-intel - In Progress Project...
 
 ## Project setup
 ```
